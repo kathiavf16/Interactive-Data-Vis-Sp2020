@@ -1,18 +1,17 @@
 // load in csv
-d3.csv("/data/surveyResults.csv").then(data => {
+d3.csv("/tutorial1_intro/censusData.csv").then(data => {
     // once the data loads, console log it
     console.log("data", data);
-  
     // select the `table` container in the HTML
-    const table = d3.select("#d3-table");
+    const table = d3.select("#d3-censusTable");
   
     /** HEADER */
     const thead = table.append("thead");
     thead
       .append("tr")
       .append("th")
-      .attr("colspan", "7")
-      .text("Pre-Survey Results");
+      .attr("colspan", "11")
+      .text("Census Results");
   
     thead
       .append("tr")
@@ -37,5 +36,7 @@ d3.csv("/data/surveyResults.csv").then(data => {
       // update the below logic to apply to your dataset
       .attr("class", d => (+d > 3 ? "high" : null))
       .text(d => d);
+
   });
   
+    
