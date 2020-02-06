@@ -1,31 +1,83 @@
 body {
     font-family: Arial, sans-serif;
     padding: 1em;
+    background-color: rgb(47, 118, 224);
+
   }
-  
+h1{
+  text-align: left;
+  color: rgb(255, 227, 66);
+  font-style: italic;
+  text-shadow: -1px 0 red, 0 1px black, 1px 0 black, 0 -1px black;
+ 
+ 
+}
+  thead {
+    background-color: rgb(255, 253, 253);
+    color: black;
+    font-size: 20px;
+    border-style: double;
+  }
+
+  tfoot {
+    background-color: rgb(255, 253, 253);
+    color: red;
+    text-align: left;
+    font-size: 20px;
+    border-style: double;
+    
+  }
+  p {
+    font-style: italic;
+    color: yellow;
+    text-decoration: underline;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+    
+  }
+
   section {
     padding: 1em 0;
   }
   
   table {
     border-collapse: collapse;
+    font-weight: 550;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    border: solid 2px black;
+    align-content: center;
+    
+  
   }
   
   th {
     padding: 0 0.5em;
+    border: 5px;
   }
   
   tr {
-    border-bottom: solid 1px #d3d3d3;
+    border-bottom: solid 2px #131111;
+    border-right: solid 2px black;
+    border-left: solid 2px black;
+    border-top: solid 2px black;
     line-height: 1.75;
+  
   }
   
   td {
-    text-align: right;
-    padding: 0 0.5em;
-    background-color: aliceblue;
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(255, 227, 66);
+    border-style: double;
+    
+  
   }
+
   
   .high {
-    background-color: steelblue;
+    background-color: red;
+    color: white;
+  
   }
+  
