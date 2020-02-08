@@ -35,7 +35,7 @@ d3.csv("../data/jackpotData.csv").then(data => {
     .data(d => Object.values(d))
     .join("td")
     // update the below logic to apply to your dataset
-    .attr("class", d => (+d > 400  ? "high" : null))
+    .attr("class", d => (+d > 400  ? "high" : "low"))
     .text(d => d);
   
     // TABLE FOOT
