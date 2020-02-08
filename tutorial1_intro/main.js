@@ -42,7 +42,7 @@ d3.csv("../data/jackpotData.csv").then(data => {
 
   const tfoot = table.append("tfoot");
   let total = d3.sum(data.map(function(d){return d.Jackpot} ));
-   
+  
   tfoot
     .append("tr")
     .append("th")
