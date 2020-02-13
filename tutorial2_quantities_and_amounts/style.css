@@ -7,7 +7,7 @@ body {
   
   .label {
     fill:orange;
-    text-anchor: end;
+    text-anchor: start;
     font-weight: bolder;
   }
   
