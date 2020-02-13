@@ -51,7 +51,7 @@ d3.csv("../data/countries.csv", d3.autoType).then(data => {
       .attr("x", d => xScale(0))
       .attr("width", d => xScale(d.turist)-margin.left)
       .attr("height", yScale.bandwidth()- margin.bottom - margin.top)
-      .attr("fill", "black")
+      .attr("fill", "orange")
       .on("mousemove", function(d){
         tooltip
           .style("left", d3.event.pageX - 50 + "px")
