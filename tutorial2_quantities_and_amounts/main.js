@@ -57,7 +57,7 @@ d3.csv("../data/countries.csv", d3.autoType).then(data => {
           .style("left", d3.event.pageX - 50 + "px")
           .style("top", d3.event.pageY - 70 + "px")
           .style("display", "inline-block")
-          .html((d.country) + "<br>" + "millions" + (d.turist));
+          .html((d.country) + "<br>" + (d.turist)+ " millions of turist in 2017");
     })
     .on("mouseout", function(d){ tooltip.style("display", "none");});
   
