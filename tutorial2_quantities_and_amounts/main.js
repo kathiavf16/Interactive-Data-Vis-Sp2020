@@ -62,8 +62,8 @@ d3.csv("../data/countries.csv", d3.autoType).then(data => {
       .text(d => d.activity)
       .attr("y", d => yScale(d.country))
       .text(d => d.turist)
-      .attr("text-anchor", "middle")
-      .attr("dy", "1.25em");
+      //.attr("text-anchor", "middle")
+      .attr("dy", "0.5em");
   
      svg
       .append("g")
