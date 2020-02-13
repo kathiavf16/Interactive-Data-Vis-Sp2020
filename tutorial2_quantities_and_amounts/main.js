@@ -31,6 +31,8 @@ d3.csv("../data/countries.csv", d3.autoType).then(data => {
     // reference for d3.axis: https://github.com/d3/d3-axis
     const xAxis = d3.axisBottom(xScale).ticks(data.length);
     const yAxis = d3.axisLeft(yScale);
+
+    const tooltip = d3.select("body").append("div").attr("class", "toolTip");
   
     /** MAIN CODE */
     const svg = d3
@@ -50,6 +52,14 @@ d3.csv("../data/countries.csv", d3.autoType).then(data => {
       .attr("width", d => xScale(d.turist)-margin.left)
       .attr("height", yScale.bandwidth()- margin.bottom - margin.top)
       .attr("fill", "black")
+      .on("mousemove", function(d){
+        tooltip
+          .style("left", d3.event.pageX - 50 + "px")
+          .style("top", d3.event.pageY - 70 + "px")
+          .style("display", "inline-block")
+          .html((d.country) + "<br>" + "millions" + (d.turist));
+    })
+    .on("mouseout", function(d){ tooltip.style("display", "none");});
   
     // append text
     const text = svg
