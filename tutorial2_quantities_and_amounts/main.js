@@ -49,7 +49,7 @@ d3.csv("../data/countries.csv", d3.autoType).then(data => {
       .attr("x", d => xScale(0))
       .attr("width", d => xScale(d.turist)-margin.left)
       .attr("height", yScale.bandwidth()- margin.bottom - margin.top)
-      .attr("fill", "rgb")
+      .attr("fill", "black")
   
     // append text
     const text = svg
