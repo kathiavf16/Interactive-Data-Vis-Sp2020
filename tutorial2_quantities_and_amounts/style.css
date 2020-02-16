@@ -41,3 +41,15 @@ rect:hover {
   padding: 14px;
   text-align: center;
 }
+
+.high {
+  fill: red;
+  
+
+}
+
+.low {
+  fill: white;
+  
+
+}
