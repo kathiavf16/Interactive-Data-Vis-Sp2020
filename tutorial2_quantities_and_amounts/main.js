@@ -82,7 +82,7 @@ d3.csv("../data/countries.csv", d3.autoType).then(data => {
       .call(xAxis)
       .selectAll("text")
       .attr("transform", "translate(-10,0)rotate(0)")
-      .style("text-anchor", "end");
+      .style("text-anchor", "start");
 
       svg
       .append("g")
