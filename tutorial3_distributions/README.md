@@ -14,7 +14,7 @@ From tutorial 1, you should have all the correct [installations](../README.md#se
 For this tutorial, you will **still need** to get a [basic server](../BASIC_SERVER.md) up and running. Use your terminal (or git bash, on PC) to navigate to the _root directory_ of your fork. Your path may look different, but the command will be something like this:
 
 ```sh
-$ cd Documents/My\ Repositories/Interactive-Data-Vis-Sp2020/
+$ cd Documents/MyRepositories/Interactive-Data-Vis-Sp2020/
 ```
 
 To pull down the latest code from our class repository to your local machine, use the following git commands: 
