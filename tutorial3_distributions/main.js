@@ -25,7 +25,6 @@ d3.csv("../data/GradsData.csv", d3.autoType).then(raw_data => {
   init();
 });
   
-  
 /* INITIALIZING FUNCTION */
 // this will be run *one time* when the data finishes loading in 
 function init() {
@@ -200,13 +199,3 @@ function draw() {
 
 
 }
-// + FILTER DATA BASED ON STATE
-
-  // const dot = svg
-  //   .selectAll("circle")
-  //   .data(filteredData, d => d.name)
-  //   .join(
-  //     enter => enter, // + HANDLE ENTER SELECTION
-  //     update => update, // + HANDLE UPDATE SELECTION
-  //     exit => exit // + HANDLE EXIT SELECTION
-  //   );

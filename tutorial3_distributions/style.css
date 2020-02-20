@@ -54,6 +54,7 @@ body {
     pointer-events: none;
     text-align: center;
   }
+
   label{
     font-weight: bolder;
     font-size: 20px;
@@ -66,3 +67,4 @@ body {
     size: inherit;
 
   }
+  
