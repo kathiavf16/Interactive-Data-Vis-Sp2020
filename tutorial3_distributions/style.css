@@ -2,7 +2,7 @@ body {
     /* ref: https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro */
     font-family: "Source Sans Pro", sans-serif;
     padding: 1em 3em;
-    background-color: skyblue;
+    background-color: bisque;
   }
   
   .dot {
@@ -15,20 +15,20 @@ body {
   
   .axis-label {
     font-size: 16px;
-    fill: black;
+    fill: royalblue;
     text-anchor: middle;
     font-weight: bolder;
   }
 
   .axis-x-axis{
-      color: white;
+      color:brown;
       stroke-width: 4;
       font-size: larger;
 
   }
 
   .axis-y-axis{
-      color: white;
+      color:brown;
       stroke-width: 4;
       font-size: larger;
 

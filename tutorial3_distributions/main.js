@@ -1,6 +1,6 @@
 /* CONSTANTS AND GLOBALS */
-const width = window.innerWidth * 0.7,
-  height = window.innerHeight * 0.7,
+const width = window.innerWidth / 1.5,
+  height = window.innerHeight / 2,
   margin = { top: 20, bottom: 50, left: 60, right: 40 },
   radius = 8;
 
@@ -44,6 +44,14 @@ function init() {
   const xAxis = d3.axisBottom(xScale);
   const yAxis = d3.axisLeft(yScale);
 
+  //gridline
+
+  let gridline = d3.axisBottom()
+                   .tickFormat("")
+                   .tickSize(535)
+                   .scale(xScale);
+                                   
+
   // + UI ELEMENT SETUP
 
   const selectElement = d3.select("#dropdown").on("change", function() {
@@ -62,14 +70,21 @@ function init() {
     .data(["All", "Asian", "Black", "Hispanic", "White"]) // + ADD UNIQUE VALUES
     .join("option")
     .attr("value", d => d)
-    .text(d => d);  
+    .text(d => d);
 
+   
   // + CREATE SVG ELEMENT
   svg = d3
     .select("#d3-container")
     .append("svg")
     .attr("width", width)
     .attr("height", height);
+  
+
+    // grid svg
+  svg.append("g")
+    .attr("class", "grid")
+    .call(gridline);  
 
   // + CALL AXES
 
@@ -135,6 +150,7 @@ function draw() {
           .call(enter =>
             enter
               .transition() // initialize transition
+              .ease(d3.easeBack)
               .delay(d => 0.0 * d.Year) // delay on each element
               .duration(1000) // duration 500ms
               .attr("cx", d => xScale(d.Year))
@@ -163,6 +179,13 @@ function draw() {
         )
     );
   
+          // NEW BOTTOM
+
+      d3.select("#reset").on("click", function() {
+		    dot
+			    .transition()
+			    .remove(); // Old Position
+	});
 
 
 
