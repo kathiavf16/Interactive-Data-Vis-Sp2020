@@ -2,13 +2,14 @@
 const width = window.innerWidth * 0.7,
   height = window.innerHeight * 0.7,
   margin = { top: 20, bottom: 50, left: 60, right: 40 },
-  radius = 7;
+  radius = 8;
 
 // these variables allow us to access anything we manipulate in init() but need access to in draw().
 // All these variables are empty before we assign something to them.
 let svg;
 let xScale;
 let yScale;
+
 
 /* APPLICATION STATE */
 let state = {
@@ -23,7 +24,8 @@ d3.csv("../data/GradsData.csv", d3.autoType).then(raw_data => {
   state.data = raw_data;
   init();
 });
-
+  
+  
 /* INITIALIZING FUNCTION */
 // this will be run *one time* when the data finishes loading in 
 function init() {
@@ -60,7 +62,7 @@ function init() {
     .data(["All", "Asian", "Black", "Hispanic", "White"]) // + ADD UNIQUE VALUES
     .join("option")
     .attr("value", d => d)
-    .text(d => d);
+    .text(d => d);  
 
   // + CREATE SVG ELEMENT
   svg = d3
@@ -74,7 +76,7 @@ function init() {
   // xAxis
   svg
     .append("g")
-    .attr("class", "axis x-axis")
+    .attr("class", "axis-x-axis")
     .attr("transform", `translate(0,${height - margin.bottom})`)
     .call(xAxis)
     .append("text")
@@ -86,7 +88,7 @@ function init() {
   //  yAxis
   svg
     .append("g")
-    .attr("class", "axis y-axis")
+    .attr("class", "axis-y-axis")
     .attr("transform", `translate(${margin.left},0)`)
     .call(yAxis)
     .append("text")
@@ -95,6 +97,7 @@ function init() {
     .attr("dx", "-3em")
     .attr("writing-mode", "vertical-rl")
     .text("Percentage of Grads");
+
 
   draw(); // calls the draw function
 }
@@ -123,7 +126,8 @@ function draw() {
             if (d.Demographic === "White") return "blue";
             else if (d.Demographic === "Black") return "black";
             else if (d.Demographic === "Hispanic") return "brown";
-            else return "pink";
+            else if (d.Demographic === "Asian") return "orange";
+            else return "black";
           })
           .attr("r", radius)
           .attr("cy", d => yScale(d.TotalGrads))
@@ -132,7 +136,7 @@ function draw() {
             enter
               .transition() // initialize transition
               .delay(d => 0.0 * d.Year) // delay on each element
-              .duration(500) // duration 500ms
+              .duration(1000) // duration 500ms
               .attr("cx", d => xScale(d.Year))
           ),
       update =>
@@ -151,13 +155,18 @@ function draw() {
           // exit selections -- all the `.dot` element that no longer match to HTML elements
           exit
             .transition()
+            .ease(d3.easeBack)
             .delay(d => 0.0 * d.Year)
-            .duration(500)
+            .duration(2500)
             .attr("cx", width)
             .remove()
         )
     );
   
+
+
+
+
 }
 // + FILTER DATA BASED ON STATE
 
