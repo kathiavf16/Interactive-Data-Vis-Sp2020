@@ -48,9 +48,8 @@ function init() {
 
   let gridline = d3.axisBottom()
                    .tickFormat("")
-                   .tickSize(535)
-                   .scale(xScale);
-                                   
+                   .tickSize(height-40)
+                   .scale(xScale);            
 
   // + UI ELEMENT SETUP
 
@@ -79,13 +78,12 @@ function init() {
     .append("svg")
     .attr("width", width)
     .attr("height", height);
-  
 
     // grid svg
   svg.append("g")
     .attr("class", "grid")
-    .call(gridline);  
-
+    .call(gridline);
+      
   // + CALL AXES
 
   // xAxis
@@ -111,7 +109,7 @@ function init() {
     .attr("y", "50%")
     .attr("dx", "-3em")
     .attr("writing-mode", "vertical-rl")
-    .text("Percentage of Grads");
+    .text("% of Grads");
 
 
   draw(); // calls the draw function
@@ -129,6 +127,7 @@ function draw() {
   const dot = svg
     .selectAll(".dot")
     .data(filteredData, d => d.name) // use `d.name` as the `key` to match between HTML and data elements
+    
     .join(
       enter =>
         // enter selections -- all data elements that don't have a `.dot` element attached to them yet
@@ -138,7 +137,7 @@ function draw() {
           .attr("stroke", "lightgrey")
           .attr("opacity", 5)
           .attr("fill", d => {
-            if (d.Demographic === "White") return "blue";
+            if (d.Demographic === "White") return "white";
             else if (d.Demographic === "Black") return "black";
             else if (d.Demographic === "Hispanic") return "brown";
             else if (d.Demographic === "Asian") return "orange";
@@ -149,11 +148,12 @@ function draw() {
           .attr("cx", d => margin.left) // initial value - to be transitioned
           .call(enter =>
             enter
+              .attr("cx", d => xScale(d.Year))
               .transition() // initialize transition
               .ease(d3.easeBack)
               .delay(d => 0.0 * d.Year) // delay on each element
               .duration(1000) // duration 500ms
-              .attr("cx", d => xScale(d.Year))
+              
           ),
       update =>
         update.call(update =>
@@ -173,10 +173,11 @@ function draw() {
             .transition()
             .ease(d3.easeBack)
             .delay(d => 0.0 * d.Year)
-            .duration(2500)
+            .duration(100)
             .attr("cx", width)
             .remove()
         )
+            
     );
   
           // NEW BOTTOM
@@ -188,6 +189,14 @@ function draw() {
 	});
 
 
+  d3.select("#start").on("click", function() {    
+      body
+        .transition()
+          .style("background-color", "green")
+        .transition()
+          .style("background-color", "blue")
+          
+    });
 
 
 }

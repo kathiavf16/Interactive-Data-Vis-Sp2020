@@ -2,7 +2,7 @@ body {
     /* ref: https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro */
     font-family: "Source Sans Pro", sans-serif;
     padding: 1em 3em;
-    background-color: bisque;
+    background-color: beige;
   }
   
   .dot {
@@ -15,7 +15,7 @@ body {
   
   .axis-label {
     font-size: 16px;
-    fill: royalblue;
+    fill:black;
     text-anchor: middle;
     font-weight: bolder;
   }
@@ -30,9 +30,39 @@ body {
   .axis-y-axis{
       color:brown;
       stroke-width: 4;
-      font-size: larger;
+      font-size: 19px;
 
   }
   .grid{
     color:grey;
+  }
+
+  #reset{
+
+    width: 100;
+    height: 80;
+  }
+
+  .toolTip {
+    position: absolute;
+    display: none;
+    min-width: 80px;
+    height: auto;
+    background: none repeat scroll 0 0 #ffffff;
+    border: 1px solid #6F257F;
+    padding: 14px;
+    pointer-events: none;
+    text-align: center;
+  }
+  label{
+    font-weight: bolder;
+    font-size: 20px;
+
+  }
+  button{
+    font-weight: bolder;
+    color: brown;
+    background-color: blanchedalmond;
+    size: inherit;
+
   }
