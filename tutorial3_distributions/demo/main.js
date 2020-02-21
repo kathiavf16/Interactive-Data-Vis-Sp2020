@@ -138,15 +138,17 @@ function draw() {
           .call(enter =>
             enter
               .transition() // initialize transition
+              .style("opacity", .1)
               .delay(d => 500 * d.ideology_rating) // delay on each element
-              .duration(500) // duration 500ms
-              .attr("cx", d => xScale(d.ideology_rating))
+              //.duration(500) // duration 500ms
+              //.attr("cx", d => xScale(d.ideology_rating))
           ),
       update =>
         update.call(update =>
           // update selections -- all data elements that match with a `.dot` element
           update
             .transition()
+            .style("opacity", .1 )
             .duration(250)
             .attr("stroke", "black")
             .transition()
@@ -157,9 +159,9 @@ function draw() {
         exit.call(exit =>
           // exit selections -- all the `.dot` element that no longer match to HTML elements
           exit
-            .transition()
-            .delay(d => 50 * d.ideology_rating)
-            .duration(500)
+            //.transition()
+            //.delay(d => 50 * d.ideology_rating)
+            //.duration(500)
             .attr("cx", width)
             .remove()
         )

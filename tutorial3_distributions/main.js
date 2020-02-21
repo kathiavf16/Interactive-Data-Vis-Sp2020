@@ -14,7 +14,7 @@ let yScale;
 /* APPLICATION STATE */
 let state = {
   data: [],
-  selectionDemographic: "All" // + YOUR FILTER SELECTION
+  selectedDemographic: "All" // + YOUR FILTER SELECTION
 };
 
 /* LOAD DATA */
@@ -56,9 +56,9 @@ function init() {
     // `this` === the selectElement
     // 'this.value' holds the dropdown value a user just selected
 
-    state.selection = this.value
+    state.selectedDemographic = this.value
     console.log("new selected demographic is ", this.value);
-    state.selectedDemographic = this.value;
+    //state.selectedDemographic = this.value;
     draw(); // re-draw the graph based on this new selection
   });
 
@@ -125,8 +125,7 @@ function draw() {
 
   const dot = svg
     .selectAll(".dot")
-    .data(filteredData, d => d.name) // use `d.name` as the `key` to match between HTML and data elements
-    
+    .data(filteredData, d => d.Demographic) // use `d.name` as the `key` to match between HTML and data elements
     .join(
       enter =>
         // enter selections -- all data elements that don't have a `.dot` element attached to them yet
@@ -148,10 +147,10 @@ function draw() {
           .call(enter =>
             enter
               .attr("cx", d => xScale(d.Year))
+              .style("opacity", .7)
               .transition() // initialize transition
               .ease(d3.easeBack)
-              .delay(d => 0.0 * d.Year) // delay on each element
-              .duration(1000) // duration 500ms
+              .duration(500) // duration 500ms
               
           ),
       update =>
@@ -159,43 +158,31 @@ function draw() {
           // update selections -- all data elements that match with a `.dot` element
           update
             .transition()
-            .duration(250)
+            .style("opacity", .6)
+            .duration(500)
             .attr("stroke", "black")
             .transition()
-            .duration(250)
+            .duration(500)
             .attr("stroke", "lightgrey")
         ),
       exit =>
         exit.call(exit =>
           // exit selections -- all the `.dot` element that no longer match to HTML elements
           exit
+            .attr("cx", d => xScale(d.Year))
             .transition()
             .ease(d3.easeBack)
             .delay(d => 0.0 * d.Year)
-            .duration(100)
-            .attr("cx", width)
+            .duration(1000)
+            .attr("cy", 150)
             .remove()
-        )
-            
+        )      
     );
-  
           // NEW BOTTOM
-
       d3.select("#reset").on("click", function() {
 		    dot
 			    .transition()
 			    .remove(); // Old Position
 	});
-
-
-  d3.select("#start").on("click", function() {    
-      body
-        .transition()
-          .style("background-color", "green")
-        .transition()
-          .style("background-color", "blue")
-          
-    });
-
 
 }
