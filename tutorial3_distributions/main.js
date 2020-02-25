@@ -150,6 +150,7 @@ function draw() {
               .style("opacity", .7)
               .transition() // initialize transition
               .ease(d3.easeBack)
+              //.delay(d => 0.0 * d.Year) // delay on each element
               .duration(500) // duration 500ms
               
           ),
