@@ -45,3 +45,7 @@ body {
     font-weight: bold;
     font-size: small;
   }
+  .axis {
+    font-size: 14px;
+    font-weight: bold;
+  }
