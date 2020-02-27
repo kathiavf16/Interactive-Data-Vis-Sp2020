@@ -88,7 +88,7 @@ function init() {
     .attr("class", "axis-label")
     .attr("x", "50%")
     .attr("dy", "3em")
-    .text("Month");
+    //.text("Month");
 
     svg
     .append("g")
@@ -100,7 +100,7 @@ function init() {
     .attr("y", "50%")
     .attr("dx", "-3em")
     .attr("writing-mode", "vertical-rl")
-    .text("Temperature");
+    .text("Average Temperature in ℉ ");
 
   draw(); // calls the draw function
 }
@@ -142,7 +142,7 @@ function draw() {
               .style("left", d3.event.pageX - 50 + "px")
               .style("top", d3.event.pageY - 70 + "px")
               .style("display", "inline-block")
-              .html("The average temperature in " + formatMonth(new Date(d.date)) + "<br> was " + (d.fahrenheit) + "F");
+              .html("The average temperature in " + formatMonth(new Date(d.date)) + "<br> was " + (d.fahrenheit) + " ℉ ");
         })
         .on("mouseout", function(d){ tooltip.style("display", "none");}),
       update => update,
@@ -174,8 +174,10 @@ function draw() {
         enter
           .append("path")
           .attr("class", "trend")
+          .style("fill", "blue")
           .attr("opacity", 0), // start them off as opacity 0 and fade them in
-      update => update, // pass through the update selection
+      update => update
+      .style("fill", "orange"), // pass through the update selection
       exit => exit.remove()
     )
     .call(selection =>
@@ -184,5 +186,6 @@ function draw() {
         .duration(1000)
         .attr("opacity", 1)
         .attr("d", d => areaFunc(d))
+        .style("fill", "lightskyblue")
     );
 }
