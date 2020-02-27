@@ -24,12 +24,13 @@ body {
   }
   
   .trend {
-    fill:lightsteelblue;
+    fill:chocolate;
     opacity: 0.5;
     stroke:black;
     border-style: solid;
     stroke-linejoin: round;
   }
+
   .toolTip {
     position: absolute;
     display: none;
@@ -45,6 +46,7 @@ body {
     font-weight: bold;
     font-size: small;
   }
+
   .axis {
     font-size: 14px;
     font-weight: bold;
