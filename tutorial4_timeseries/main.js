@@ -125,7 +125,6 @@ function draw() {
     .y0(height - margin.bottom, margin.top)
     .y1(d => yScale(d.fahrenheit));
     
-
   const dot = svg
     .selectAll(".dot")
     .data(filteredData, d => d.date) // use `d.year` as the `key` to match between HTML and data elements
@@ -167,9 +166,6 @@ function draw() {
           .duration(1000) // duration 1000ms / 1s
           .attr("cy", d => yScale(d.fahrenheit)) // started from the bottom, now we're here
     );
-      
-      
-
   const area = svg
     .selectAll("path.trend")
     .data([filteredData])
