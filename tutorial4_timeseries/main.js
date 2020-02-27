@@ -2,7 +2,7 @@
 const width = window.innerWidth * 0.7,
   height = window.innerHeight * 0.7,
   margin = { top: 20, bottom: 50, left: 60, right: 40 },
-  radius = 3;
+  radius = 8;
   default_selection = "Select a State";
 
 // these variables allow us to access anything we manipulate in init() but need access to in draw().
@@ -42,6 +42,7 @@ function init() {
 
   const xAxis = d3.axisBottom(xScale);
         yAxis = d3.axisLeft(yScale);
+        
 
   // + UI ELEMENT SETUP
 
@@ -114,14 +115,16 @@ function draw() {
   }
   yScale.domain([0, d3.max(filteredData, d => d.fahrenheit)]);
 
-  // re-draw our yAxix since our yScale is updated with the new data
- 
+  const tooltip = d3.select("body").append("div").attr("class", "toolTip");
+  const formatMonth = d3.timeFormat('%b');
 
   // we define our line function generator telling it how to access the x,y values for each point
-  const lineFunc = d3
-    .line()
+  const areaFunc = d3
+    .area()
     .x(d => xScale(new Date(d.date)))
-    .y(d => yScale(d.fahrenheit));
+    .y0(height - margin.bottom, margin.top)
+    .y1(d => yScale(d.fahrenheit));
+    
 
   const dot = svg
     .selectAll(".dot")
@@ -134,7 +137,15 @@ function draw() {
           .attr("class", "dot") // Note: this is important so we can identify it in future updates
           .attr("r", radius)
           .attr("cy", height - margin.bottom) // initial value - to be transitioned
-          .attr("cx", d => xScale(new Date(d.date))),
+          .attr("cx", d => xScale(new Date(d.date)))
+          .on("mousemove", function(d){
+            tooltip
+              .style("left", d3.event.pageX - 50 + "px")
+              .style("top", d3.event.pageY - 70 + "px")
+              .style("display", "inline-block")
+              .html("The average temperature in " + formatMonth(new Date(d.date)) + "<br> was " + (d.fahrenheit) + "F");
+        })
+        .on("mouseout", function(d){ tooltip.style("display", "none");}),
       update => update,
       exit =>
         exit.call(exit =>
@@ -156,8 +167,10 @@ function draw() {
           .duration(1000) // duration 1000ms / 1s
           .attr("cy", d => yScale(d.fahrenheit)) // started from the bottom, now we're here
     );
+      
+      
 
-  const line = svg
+  const area = svg
     .selectAll("path.trend")
     .data([filteredData])
     .join(
@@ -174,6 +187,6 @@ function draw() {
         .transition() // sets the transition on the 'Enter' + 'Update' selections together.
         .duration(1000)
         .attr("opacity", 1)
-        .attr("d", d => lineFunc(d))
+        .attr("d", d => areaFunc(d))
     );
 }

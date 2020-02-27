@@ -2,12 +2,14 @@ body {
     /* ref: https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro */
     font-family: "Source Sans Pro", sans-serif;
     padding: 1em 3em;
+    background-color: lightgoldenrodyellow;
   }
   
   .dot {
     cursor: pointer;
+    fill:black;
     color: steelblue;
-    opacity: 0.5;
+    
   }
   
   .dot:hover {
@@ -16,11 +18,30 @@ body {
   
   .axis-label {
     font-size: 14px;
-    fill: black;
+    fill: red;
     text-anchor: middle;
+    font-weight: bold;
   }
   
   .trend {
-    fill: none;
-    stroke: black;
+    fill:lightsteelblue;
+    opacity: 0.5;
+    stroke:black;
+    border-style: solid;
+    stroke-linejoin: round;
+  }
+  .toolTip {
+    position: absolute;
+    display: none;
+    min-width: 80px;
+    height: auto;
+    background: none repeat scroll 0 0 #ffffff;
+    border: 1px solid #6F257F;
+    padding: 14px;
+    pointer-events: none;
+    text-align: center;
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: small;
   }
