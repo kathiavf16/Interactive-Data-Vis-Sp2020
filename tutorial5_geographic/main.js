@@ -80,6 +80,7 @@ function init() {
     .data(petrodata)
     .join("circle")
     .attr("r", 10)
+    .attr("class", d=> (d.COLOR === "OFF"  ? "off" : "on"))
     .attr("fill", "brown")
     .attr("transform", d => {
       const [x, y] = projection([d.long, d.lat]);
