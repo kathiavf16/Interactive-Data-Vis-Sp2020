@@ -73,7 +73,8 @@ function init() {
   });
 
   // + DRAW BASE MAP PATH
-  //const Coords = { latitude: +petrodata.lat, longitude: +petrodata.long };
+  //tooltip
+  const tooltip = d3.select("body").append("div").attr("class", "toolTip");
   svg
     .selectAll("circle")
     .data(petrodata)
@@ -83,7 +84,16 @@ function init() {
     .attr("transform", d => {
       const [x, y] = projection([d.long, d.lat]);
       return `translate(${x}, ${y})`;
-    });
+    })
+    .on("mousemove", function(d){
+      tooltip
+        .style("left", d3.event.pageX - 50 + "px")
+        .style("top", d3.event.pageY - 70 + "px")
+        .style("display", "inline-block")
+        .html((d.NAME) + "<br>" + (d.OTHERINFO));
+  })
+  .on("mouseout", function(d){ tooltip.style("display", "none");});
+    
 
 
   // + ADD EVENT LISTENERS (if you want)
@@ -100,7 +110,6 @@ function init() {
 
   draw(); // calls the draw function
 }
-
 
 /**
  * DRAW FUNCTION
