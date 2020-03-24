@@ -46,6 +46,7 @@ function init() {
   // so they can be locally scoped to init()
   const projection = d3.geoAlbersUsa().fitSize([width, height], state.geojson);
   const path = d3.geoPath().projection(projection);
+  console.log("path", path);
 
   // create an svg element in our main `d3-container` element
   svg = d3
